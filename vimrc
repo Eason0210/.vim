@@ -73,8 +73,12 @@ set updatetime=1000
 
 set hlsearch
 set incsearch
+"change cursor shape to beam at Inset-mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-
+"remember the position last edited
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
@@ -326,6 +330,91 @@ func! CompileRunGcc()
 endfunc
 
 
+"================
+"图形界面设置
+"================
+
+if has("gui_running")
+    " 设定中英文输入法自动切换
+    "  autocmd! InsertEnter * set noimdisable
+    "  autocmd! InsertLeave * set imdisable
+    "  set noimdisable
+
+    if has("win32")
+        " Windows兼容配置
+        " 设定图形界面大小
+        set lines=40
+        set columns=80
+        set guioptions-=m "menu"
+        set guioptions-=T "tool bar"
+        set guioptions-=r "right scrollbar"
+        set guioptions-=L "left scrollbar"
+
+        " 字体配置
+        "exec 'set guifont='.iconv('DejaVu_Sans_Mono', &enc, 'gbk').':h12:cANSI'
+        "exec 'set guifontwide='.iconv('微软雅黑', &enc, 'gbk').':h12'
+        "set guifont=FuraMono_NF:h12
+        "set guifont=DejaVu_Sans_Mono_Nerd_Font_Complete_Windows_Compatible:h12
+        set guifont=MesloLGM_NF:h12
+        "set guifont=Hack_Nerd_Font_Mono_Regular:12
+        set gfw=楷体:h14
+        "自动设当前编辑的文件所在目录为当前工作路径
+        exec 'cd ' . fnameescape('d:\Code')
+        set autochdir
+    endif
+
+    if has("unix") && !has('gui_macvim')
+        "set guifont=DejaVu_Sans_Mono:h12
+    endif
+    if has("mac") || has("gui_macvim")
+        "set guifont=Menlo:h15
+        "set guifont=DejaVu_Sans_Mono_for_Powerline:h15
+        set guifont=DejaVu_Sans_Mono_Nerd_Font_Complete:h15
+        "set guifont=DejaVu_Sans_Mono:h12
+        if has("gui_macvim")
+            "set transparency=4
+             "set lines=200 columns=142
+             set lines=50 columns=80
+
+             let s:lines=&lines
+             let s:columns=&columns
+             func! FullScreenEnter()
+                 set lines=999 columns=999
+                 set fu
+             endf
+
+             func! FullScreenLeave()
+                 let &lines=s:lines
+                 let &columns=s:columns
+                 set nofu
+             endf
+
+             func! FullScreenToggle()
+                 if &fullscreen
+                     call FullScreenLeave()
+                 else
+                     call FullScreenEnter()
+                 endif
+             endf
+        endif
+    endif
+endif
+
+"Under the Mac(MacVim)
+if has("gui_macvim")
+    " Mac 下，按 Leader + ff 切换全屏
+    map <Leader>ff  :call FullScreenToggle()<cr>
+
+    " Set input method off
+    "set noimdisable
+    "自动设当前编辑的文件所在目录为当前工作路径
+    exec 'cd ' . fnameescape('~/Code')
+    set autochdir
+    "Open .vimrc and .bash_profile
+    map <LEADER>bf :e ~/.bash_profile<CR>
+endif
+
+
 " ===
 " === Install Plugins with Vim-Plug
 " ===
@@ -527,89 +616,6 @@ hi NonText ctermfg=gray guifg=grey10
 "hi SpecialKey ctermfg=blue guifg=grey70
 
 
-"================
-"图形界面设置
-"================
-
-if has("gui_running")
-    " 设定中英文输入法自动切换
-    "  autocmd! InsertEnter * set noimdisable
-    "  autocmd! InsertLeave * set imdisable
-    "  set noimdisable
-
-    if has("win32")
-        " Windows兼容配置
-        " 设定图形界面大小
-        set lines=40
-        set columns=80
-        set guioptions-=m "menu"
-        set guioptions-=T "tool bar"
-        set guioptions-=r "right scrollbar"
-        set guioptions-=L "left scrollbar"
-
-        " 字体配置
-        "exec 'set guifont='.iconv('DejaVu_Sans_Mono', &enc, 'gbk').':h12:cANSI'
-        "exec 'set guifontwide='.iconv('微软雅黑', &enc, 'gbk').':h12'
-        "set guifont=FuraMono_NF:h12
-        "set guifont=DejaVu_Sans_Mono_Nerd_Font_Complete_Windows_Compatible:h12
-        set guifont=MesloLGM_NF:h12
-        "set guifont=Hack_Nerd_Font_Mono_Regular:12
-        set gfw=楷体:h14
-        "自动设当前编辑的文件所在目录为当前工作路径
-        exec 'cd ' . fnameescape('d:\Code')
-        set autochdir
-    endif
-
-    if has("unix") && !has('gui_macvim')
-        "set guifont=DejaVu_Sans_Mono:h12
-    endif
-    if has("mac") || has("gui_macvim")
-        "set guifont=Menlo:h15
-        "set guifont=DejaVu_Sans_Mono_for_Powerline:h15
-        set guifont=DejaVu_Sans_Mono_Nerd_Font_Complete:h15
-        "set guifont=DejaVu_Sans_Mono:h12
-        if has("gui_macvim")
-            "set transparency=4
-             "set lines=200 columns=142
-             set lines=50 columns=80
-
-             let s:lines=&lines
-             let s:columns=&columns
-             func! FullScreenEnter()
-                 set lines=999 columns=999
-                 set fu
-             endf
-
-             func! FullScreenLeave()
-                 let &lines=s:lines
-                 let &columns=s:columns
-                 set nofu
-             endf
-
-             func! FullScreenToggle()
-                 if &fullscreen
-                     call FullScreenLeave()
-                 else
-                     call FullScreenEnter()
-                 endif
-             endf
-        endif
-    endif
-endif
-
-"Under the Mac(MacVim)
-if has("gui_macvim")
-    " Mac 下，按 Leader + ff 切换全屏
-    map <Leader>ff  :call FullScreenToggle()<cr>
-
-    " Set input method off
-    "set noimdisable
-    "自动设当前编辑的文件所在目录为当前工作路径
-    exec 'cd ' . fnameescape('~/Code')
-    set autochdir
-    "Open .vimrc and .bash_profile
-    map <LEADER>bf :e ~/.bash_profile<CR>
-endif
 
 " ===================== Start of Plugin Settings =====================
 
