@@ -1,0 +1,16 @@
+*.swp
+view/
+.DS_Store
+plugged/
+sessions/
+autoload/
+.netrwhist
+.ycm_extra_conf.py
+.XTablineSessions
+.XTablineBookmarks
+bundle/
+doc/
+spell/
+tmp/
+
+
