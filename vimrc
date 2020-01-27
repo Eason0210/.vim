@@ -419,7 +419,7 @@ endif
 " === Install Plugins with Vim-Plug
 " ===
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'mg979/vim-xtabline'
 "Plug 'xolox/vim-session'
