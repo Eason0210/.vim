@@ -80,7 +80,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 "remember the position last edited
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
+"fix backspace issues in window os
+set backspace=2
 " ===
 " === Terminal Behaviors(TODO)
 " ===
