@@ -12,7 +12,6 @@
 " SidOfc/mkdx
 
 
-
 " ====================
 " === Editor Setup ===
 " ====================
@@ -121,7 +120,7 @@ noremap S :w<CR>
 
 " Open the vimrc file anytime
 noremap <LEADER>rc :e ~/.vim/vimrc<CR>
-map <LEADE>r :source $MYVIMRC<CR>
+"map <LEADE>r :source $MYVIMRC<CR>
 
 " Open Startify
 "noremap <LEADER>st :Startify<CR>
@@ -351,7 +350,7 @@ if has("gui_running")
         set guioptions-=r "right scrollbar"
         set guioptions-=L "left scrollbar"
 
-        noremap <LEADER>rc :e ~/.vimrc<CR>
+        "noremap <LEADER>rc :e ~/.vimrc<CR>
         " 字体配置
         "exec 'set guifont='.iconv('DejaVu_Sans_Mono', &enc, 'gbk').':h12:cANSI'
         "exec 'set guifontwide='.iconv('微软雅黑', &enc, 'gbk').':h12'
