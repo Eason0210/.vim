@@ -314,7 +314,7 @@ func! CompileRunGcc()
 		:!time bash %
 	elseif &filetype == 'python'
 		set splitbelow
-		:sp
+		":sp
 		:term python3 %
 	elseif &filetype == 'html'
 		silent! exec "!".g:mkdp_browser." % &"
