@@ -206,6 +206,8 @@ cnoremap <M-w> <S-Right>
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
+tnoremap <LEADER>w <C-w>w
+tnoremap <LEADER>q exit<CR>
 noremap <LEADER>w <C-w>w
 noremap <LEADER>k <C-w>k
 noremap <LEADER>j <C-w>j
@@ -463,6 +465,9 @@ Plug 'junegunn/fzf.vim'
 "Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 "Plug 'junegunn/fzf'
 Plug 'francoiscabrol/ranger.vim'
+
+" Terminal
+Plug 'jpalardy/vim-slime'
 
 " Taglist
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
@@ -874,6 +879,15 @@ let g:bullets_enabled_file_types = [
 			\ 'scratch'
 			\]
 
+" ===
+" === Vim-slime
+" ===
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_config = {options}
+let g:slime_python_ipython = 1
+let g:slime_haskell_ghci_add_let = 0
+"let g:slime_vimterminal_cmd = "python3"
+"let g:slime_vimterminal_config = {"term_finish": "close"}
 
 " ===
 " === Taglist
