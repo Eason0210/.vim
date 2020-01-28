@@ -883,7 +883,7 @@ let g:bullets_enabled_file_types = [
 " === Vim-slime
 " ===
 let g:slime_target = "vimterminal"
-let g:slime_vimterminal_config = {options}
+"let g:slime_vimterminal_config = {options}
 let g:slime_python_ipython = 1
 let g:slime_haskell_ghci_add_let = 0
 "let g:slime_vimterminal_cmd = "python3"
