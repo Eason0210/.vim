@@ -51,10 +51,10 @@ Please **DO NOT** just copy this config without really looking at it! Please, at
 
 ## After Installation, You Need To:
 
-- [ ] Install `vim` or  `macvim`
+- [ ] Install `vim8` or  `macvim`
 - [ ] Install `nodejs`
 - [ ] Install nerd-fonts (actually it's optional but it looks real good)  
-      recommand MesloLGM (it is a nerd font form Apple Menlo font) 
+      Recommand MesloLGM (it is a nerd font form Apple Menlo font) 
 
 ## After Installation, You Might Want To:
 #### First of all
@@ -93,8 +93,6 @@ Python:
 |-----------------------------------------------------------|------------|
 | Cursor up 5 terminal lines                                | `5k`       |
 | Cursor down 5 terminal lines                              | `5j`       |
-| Cursor to the start of the line                           | `0`        |
-| Cursor to the end of the line                             | `$`        |
 | Move the view port up 5 lines without moving the cursor   | `Ctrl` `y` |
 | Move the view port down 5 lines without moving the cursor | `Ctrl` `e` |
 | Move to the end of this word                              | `e`        |
@@ -132,21 +130,22 @@ Python:
 
 ### 2 Window Management
 #### 2.1 Creating Window Through Split Screen
-| Shortcut    | Action                                                                      |
-|-------------|-----------------------------------------------------------------------------|
-| `s` `k`     | Create a new horizontal split screen and place it above the current window  |
-| `s` `j`     | Create a new horizontal split screen and place it below the current window  |
-| `s` `h`     | Create a new vertical split screen and place it left to the current window  |
-| `s` `l`     | Create a new vertical split screen and place it right to the current window |
-| `s` `v`     | Set the two splits to be vertical                                           |
-| `s` `s`     | Set the two splits to be horizontal                                         |
-| `s` `r` `v` | Rotate splits and arrange splits vertically                                 |
-| `s` `r` `h` | Rotate splits and arrange splits horizontally                               |
+| Shortcut        | Action                                                                      |
+|-----------------|-----------------------------------------------------------------------------|
+| `s` `k`         | Create a new horizontal split screen and place it above the current window  |
+| `s` `j`         | Create a new horizontal split screen and place it below the current window  |
+| `s` `h`         | Create a new vertical split screen and place it left to the current window  |
+| `s` `l`         | Create a new vertical split screen and place it right to the current window |
+| `s` `v`         | Set the two splits to be vertical                                           |
+| `s` `s`         | Set the two splits to be horizontal                                         |
+| `s` `r` `v`     | Rotate splits and arrange splits vertically                                 |
+| `s` `r` `h`     | Rotate splits and arrange splits horizontally                               |
+| `SPACE` `f` `f` | Maximize to full screen(macvim only)                                         |
 
 #### 2.2 Moving the Cursor Between Different Windows
 | Shortcut      | Action                         |
 |---------------|--------------------------------|
-| `Ctrl` + `w` | Move cursor to the next window(TODO) |
+| `SPACE` + `w` | Move cursor to the next window |
 | `SPACE` + `h` | Move cursor one window left    |
 | `SPACE` + `l` | Move cursor one window right   |
 | `SPACE` + `k` | Move cursor one window up      |
@@ -174,7 +173,7 @@ Use the arrow keys to resize the current window.
 | Shortcut    | Action                                                      |
 |-------------|-------------------------------------------------------------|
 | `SPACE` `/` | Create a new split with a terminal below the current window |
-| `Ctrl` `n`  | Escape from terminal input mode(TODO)                             |
+| `Ctrl` `n`  | Escape from terminal input mode                             |
 
 ## Plugins
 #### COC (AutoCompletion)
@@ -223,15 +222,21 @@ See `:help table-mode.txt` for more.
 #### Vista.vim(or Tagbar)
 | Shortcut   | Action                              |
 |------------|-------------------------------------|
-| `T`        | toggle function and variable list   |
+| `T`        | toggle function and variable list  |
 | `Ctrl` `t` | open function/class/variable finder |
 
 #### FZF - the fuzzy file finder
 | Shortcut   | Action           |
 |------------|------------------|
 | `Ctrl` `p` | **Active FZF**   |
-| `Ctrl` `u` | Move up 1 item   |
-| `Ctrl` `e` | Move down 1 item |
+| `Ctrl` `f` | Active Ag        |
+| `Ctrl` `h` | Active MRU       |
+| `Ctrl` `t` | Active BTags     |
+| `Ctrl` `l` | LinesWithPreview |
+| `Ctrl` `w` | Buffers          |
+| `Ctrl` `k` | Move up 1 item   |
+| `Ctrl` `j` | Move down 1 item |
+| `;`        | History          |
 
 #### Undotree
 | Shortcut      | Action        |
@@ -269,7 +274,7 @@ To add surround (`string` -> `"string"`):
 ```
 string
 ```
-press: `yskw'`:
+press: `yskw'`:(TODO)
 ```
 'string'
 ```

@@ -87,8 +87,8 @@ set backspace=2
 " ===
 "let g:neoterm_autoscroll = 1
 "autocmd TermOpen term://* startinsert
-"tnoremap <C-N> <C-\><C-N>
-"tnoremap <C-O> <C-\><C-N><C-O>
+tnoremap <C-N> <C-\><C-N>
+tnoremap <C-O> <C-\><C-N><C-O>
 "let g:terminal_color_0  = '#000000'
 "let g:terminal_color_1  = '#FF5555'
 "let g:terminal_color_2  = '#50FA7B'
@@ -119,11 +119,11 @@ noremap Q :q<CR>
 noremap <C-q> :qa<CR>
 noremap S :w<CR>
 
-" Open the vimrc file anytime
+"cOpen the vimrc file anytime
 noremap <LEADER>rc :e ~/.vim/vimrc<CR>
-"map <LEADE>r :source $MYVIMRC<CR>
+noremap <LEADER>so :source $MYVIMRC<CR>
 
-" Open Startify
+"Open Startify
 "noremap <LEADER>st :Startify<CR>
 
 
@@ -158,14 +158,14 @@ noremap <c-g> :term lazygit<CR>
 " ===
 " === Cursor Movement
 " ===
-" New cursor movement (the default arrow keys are used for resizing windows)
+"Cursor movement (the default arrow keys are used for resizing windows)
 "     ^
-"     u
-" < n   i >
-"     e
+"     k
+" < h   l >
+"     j
 "     v
 
-" K/J keys for 5 times u/e (faster navigation) TODO
+" K/J keys for 5 times k/j (faster navigation) TODO
 "noremap <silent> K 5k
 "noremap <silent> J 5j
 
@@ -737,9 +737,8 @@ noremap <C-f> :Ag<CR>
 noremap <C-h> :MRU<CR>
 noremap <C-t> :BTags<CR>
 noremap <C-l> :LinesWithPreview<CR>
-"noremap <C-w> :Buffers<CR>
-noremap <LEADER>w :Buffers<CR>
-"noremap ; :History:<CR>
+noremap <C-w> :Buffers<CR>
+noremap ; :History:<CR>
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noruler
