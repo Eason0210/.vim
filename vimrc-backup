@@ -10,313 +10,36 @@
 " vim-esearch
 " fmoralesc/worldslice
 " SidOfc/mkdx
-let fancy_symbols_enabled = 0
 
 
-set encoding=utf-8
-let using_neovim = has('nvim')
-let using_vim = !using_neovim
+" ====================
+" === Editor Setup ===
+" ====================
+" ===
+" === System
+" ===
+"set clipboard=unnamedplus
+let &t_ut=''
+set autochdir
 
-" ============================================================================
-" Vim-plug initialization
-" Avoid modifying this section, unless you are very sure of what you are doing
+set nocompatible
+"关闭启动界面信息
+set shortmess=atI
 
-let vim_plug_just_installed = 0
-if using_neovim
-    let vim_plug_path = expand('~/.config/nvim/autoload/plug.vim')
-else
-    let vim_plug_path = expand('~/.vim/autoload/plug.vim')
-endif
-if !filereadable(vim_plug_path)
-    echo "Installing Vim-plug..."
-    echo ""
-    if using_neovim
-        silent !mkdir -p ~/.config/nvim/autoload
-        silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    else
-        silent !mkdir -p ~/.vim/autoload
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    endif
-    let vim_plug_just_installed = 1
-endif
-
-" manually load vim-plug the first time
-if vim_plug_just_installed
-    :execute 'source '.fnameescape(vim_plug_path)
-endif
-
-" Obscure hacks done, you can now modify the rest of the config down below 
-" as you wish :)
-" IMPORTANT: some things in the config are vim or neovim specific. It's easy 
-" to spot, they are inside `if using_vim` or `if using_neovim` blocks.
-
-" ============================================================================
-" Active plugins
-" You can disable or add new ones here:
-
-" this needs to be here, so vim-plug knows we are declaring the plugins we
-" want to use
-if using_neovim
-    call plug#begin("~/.config/nvim/plugged")
-else
-    call plug#begin("~/.vim/plugged")
-endif
-" Now the actual plugins:
-
-Plug 'mg979/vim-xtabline'
-"Plug 'xolox/vim-session'
-"Plug 'xolox/vim-misc' " vim-session dep
-Plug 'idanarye/vim-vebugger'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
-
-" Pretty Dress
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-"Plug 'theniceboy/eleline.vim'
-Plug 'bling/vim-bufferline'
-"Plug 'liuchengxu/space-vim-theme'
-Plug 'morhetz/gruvbox'
-"Plug 'ayu-theme/ayu-vim'
-"Plug 'rakr/vim-one'
-"Plug 'mhartington/oceanic-next'
-"Plug 'kristijanhusak/vim-hybrid-material'
-"Plug 'ajmwagar/vim-deus'
-
-" Genreal Highlighter
-Plug 'jaxbot/semantic-highlight.vim'
-Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
-
-" File navigation
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-"FZF
-if has("mac") || has("gui_macvim")
-Plug '/usr/local/opt/fzf'
-endif
-
-if has("win32")
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-endif
-Plug 'junegunn/fzf.vim'
-"Plug 'yuki-ycino/fzf-preview.vim'
-"Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-"Plug 'junegunn/fzf'
-Plug 'francoiscabrol/ranger.vim'
-
-" Terminal
-Plug 'jpalardy/vim-slime'
-
-" Taglist
-"Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
-Plug 'liuchengxu/vista.vim'
-
-" Error checking, handled by coc
-
-" Auto Complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-
-" Haskell Support
-"Plug 'neovimhaskell/haskell-vim'
-
-" Snippets(Ultisnips remove support for Python2)
-if has('python3')
-    Plug 'SirVer/ultisnips'
-elseif has('python')
-    Plug 'SirVer/ultisnips', {
-        \   'tag': '3.2',
-        \   'dir': get(g:, 'plug_home', '~/.vim/bundle') . '/ultisnips_py2',
-        \ }
-endif
-Plug 'honza/vim-snippets'
-
-" Undo Tree
-Plug 'mbbill/undotree'
-
-" Git
-Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
-Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
-"Plug 'mhinz/vim-signify'
-Plug 'airblade/vim-gitgutter'
-
-" CSharp
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] } " omnisharp-vim dependency
-
-" HTML, CSS, JavaScript, PHP, JSON, etc.
-Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
-Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-"Plug 'jaxbot/browserlink.vim'
-
-" Go
-"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
-
-" Python
-Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-"Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
-"Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
-Plug 'tweekmonster/braceless.vim'
-
-" Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'theniceboy/bullets.vim'
-
-" Editor Enhancement
-"Plug 'Raimondi/delimitMate'
-Plug 'jiangmiao/auto-pairs'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line
-Plug 'AndrewRadev/switch.vim' " gs to switch
-Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
-Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
-Plug 'junegunn/vim-after-object' " da= to delete what's after =
-Plug 'junegunn/vim-easy-align' " gaip= to align the = in paragraph, 
-Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
-Plug 'easymotion/vim-easymotion'
-Plug 'Konfekt/FastFold'
-Plug 'junegunn/vim-peekaboo'
-
-" Input Method Autoswitch
-"Plug 'rlue/vim-barbaric' " slowing down vim-multiple-cursors
-
-" Formatter
-Plug 'Chiel92/vim-autoformat'
-
-" For general writing
-Plug 'junegunn/goyo.vim'
-"Plug 'reedes/vim-wordy'
-"Plug 'ron89/thesaurus_query.vim'
-
-" Bookmarks
-"Plug 'kshenoy/vim-signature'
-Plug 'MattesGroeger/vim-bookmarks'
-
-" Find & Replace
-Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
-Plug 'osyo-manga/vim-anzu'
-
-" Documentation
-"Plug 'KabbAmine/zeavim.vim' " <LEADER>z to find doc
-
-" Mini Vim-APP
-"Plug 'voldikss/vim-floaterm'
-"Plug 'liuchengxu/vim-clap'
-"Plug 'jceb/vim-orgmode'
-Plug 'mhinz/vim-startify'
-"Plug 'theniceboy/vim-leader-mapper'(nvim only)
-
-" Vim Applications
-"Plug 'itchyny/calendar.vim'
-
-" Other visual enhancement
-Plug 'ryanoasis/vim-devicons'
-Plug 'luochen1990/rainbow'
-
-" Other useful utilities
-Plug 'tpope/vim-eunuch' " do stuff like :SudoWrite
-Plug 'makerj/vim-pdf'
-
-" Dependencies
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'kana/vim-textobj-user'
-Plug 'roxma/nvim-yarp'
-Plug 'rbgrouleff/bclose.vim' " For ranger.vim
-
-" Tell vim-plug we finished declaring plugins, so it can load them
-call plug#end()
-
-" ============================================================================
-" Install plugins the first time vim runs
-
-if vim_plug_just_installed
-    echo "Installing Bundles, please ignore key map error messages"
-    :PlugInstall
-endif
-
-" ============================================================================
-" Vim settings and mappings
-" You can edit them as you wish
- 
-if using_vim
-    " A bunch of things that are set by default in neovim, but not in vim
-
-    "Language Setting
-    set langmenu=en_US
-    let $LANG='en_US'
-    " close interface information
-    set shortmess=atI
-    " no vi-compatible
-    set nocompatible
-
-    "set clipboard=unnamedplus
-    let &t_ut=''
-    set autochdir
-    " allow plugins by file type (required for plugins!)
-    filetype plugin on
-    filetype indent on
-
-    " always show status bar
-    set laststatus=2
-
-    " incremental search
-    set incsearch
-    " highlighted search results
-    set hlsearch
-
-    "change cursor shape to beam at Inset-mode
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-    " syntax highlight on
-    syntax on
-
-    "fix backspace issues in window os
-    set backspace=2
-    " better backup, swap and undos storage for vim (nvim has nice ones by
-    " default)
-    set directory=~/.vim/dirs/tmp     " directory to place swap files in
-    set backup                        " make backup files
-    set backupdir=~/.vim/dirs/backups " where to put backup files
-    set undofile                      " persistent undos - undo after you re-open the file
-    set undodir=~/.vim/dirs/undos
-    set viminfo+=n~/.vim/dirs/viminfo
-    " create needed directories if they don't exist
-    if !isdirectory(&backupdir)
-        call mkdir(&backupdir, "p")
-    endif
-    if !isdirectory(&directory)
-        call mkdir(&directory, "p")
-    endif
-    if !isdirectory(&undodir)
-        call mkdir(&undodir, "p")
-    endif
-endif
+"Language Setting
+set langmenu=en_US
+let $LANG='en_US'
 
 " ===
 " === Editor behavior
 " ===
-" show line numbers
 set number
 set relativenumber
 set cursorline
-
-" tabs and spaces handling
-"set expandtab
 set noexpandtab
 set tabstop=2
-set softtabstop=2
 set shiftwidth=2
-
-"
+set softtabstop=2
 set autoindent
 set list
 set listchars=tab:\|\ ,trail:▫
@@ -347,11 +70,18 @@ set visualbell
 set colorcolumn=80
 set updatetime=1000
 
+set hlsearch
+set incsearch
+"change cursor shape to beam at Inset-mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 "remember the position last edited
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" remove ugly vertical lines on window division
-set fillchars+=vert:\ 
 
+"fix backspace issues in window os
+set backspace=2
 " ===
 " === Terminal Behaviors(TODO)
 " ===
@@ -374,6 +104,7 @@ tnoremap <C-N> <C-\><C-N>
 "let g:terminal_color_12 = '#CAA9FA'
 "let g:terminal_color_13 = '#FF92D0'
 "let g:terminal_color_14 = '#9AEDFE'
+
 
 " ===
 " === Basic Mappings
@@ -687,49 +418,220 @@ if has("gui_macvim")
     map <LEADER>bf :e ~/.bash_profile<CR>
 endif
 
+
+" ===
+" === Install Plugins with Vim-Plug
+" ===
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'mg979/vim-xtabline'
+"Plug 'xolox/vim-session'
+"Plug 'xolox/vim-misc' " vim-session dep
+Plug 'idanarye/vim-vebugger'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+
+" Pretty Dress
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'theniceboy/eleline.vim'
+Plug 'bling/vim-bufferline'
+"Plug 'liuchengxu/space-vim-theme'
+Plug 'morhetz/gruvbox'
+"Plug 'ayu-theme/ayu-vim'
+"Plug 'rakr/vim-one'
+"Plug 'mhartington/oceanic-next'
+"Plug 'kristijanhusak/vim-hybrid-material'
+"Plug 'ajmwagar/vim-deus'
+
+" Genreal Highlighter
+Plug 'jaxbot/semantic-highlight.vim'
+Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
+
+" File navigation
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+"FZF
+if has("mac") || has("gui_macvim")
+Plug '/usr/local/opt/fzf'
+endif
+
+if has("win32")
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+endif
+Plug 'junegunn/fzf.vim'
+"Plug 'yuki-ycino/fzf-preview.vim'
+"Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+"Plug 'junegunn/fzf'
+Plug 'francoiscabrol/ranger.vim'
+
+" Terminal
+Plug 'jpalardy/vim-slime'
+
+" Taglist
+"Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
+Plug 'liuchengxu/vista.vim'
+
+" Error checking, handled by coc
+
+" Auto Complete
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+
+" Haskell Support
+"Plug 'neovimhaskell/haskell-vim'
+
+" Snippets(Ultisnips remove support for Python2)
+if has('python3')
+    Plug 'SirVer/ultisnips'
+elseif has('python')
+    Plug 'SirVer/ultisnips', {
+        \   'tag': '3.2',
+        \   'dir': get(g:, 'plug_home', '~/.vim/bundle') . '/ultisnips_py2',
+        \ }
+endif
+Plug 'honza/vim-snippets'
+
+" Undo Tree
+Plug 'mbbill/undotree'
+
+" Git
+Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
+Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
+"Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
+
+" CSharp
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] } " omnisharp-vim dependency
+
+" HTML, CSS, JavaScript, PHP, JSON, etc.
+Plug 'elzr/vim-json'
+Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
+Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+"Plug 'jaxbot/browserlink.vim'
+
+" Go
+"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+
+" Python
+Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
+Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
+"Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
+"Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
+Plug 'tweekmonster/braceless.vim'
+
+" Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'theniceboy/bullets.vim'
+
+" Editor Enhancement
+"Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line
+Plug 'AndrewRadev/switch.vim' " gs to switch
+Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
+Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
+Plug 'junegunn/vim-after-object' " da= to delete what's after =
+Plug 'junegunn/vim-easy-align' " gaip= to align the = in paragraph, 
+Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
+Plug 'easymotion/vim-easymotion'
+Plug 'Konfekt/FastFold'
+Plug 'junegunn/vim-peekaboo'
+
+" Input Method Autoswitch
+"Plug 'rlue/vim-barbaric' " slowing down vim-multiple-cursors
+
+" Formatter
+Plug 'Chiel92/vim-autoformat'
+
+" For general writing
+Plug 'junegunn/goyo.vim'
+"Plug 'reedes/vim-wordy'
+"Plug 'ron89/thesaurus_query.vim'
+
+" Bookmarks
+"Plug 'kshenoy/vim-signature'
+Plug 'MattesGroeger/vim-bookmarks'
+
+" Find & Replace
+Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
+Plug 'osyo-manga/vim-anzu'
+
+" Documentation
+"Plug 'KabbAmine/zeavim.vim' " <LEADER>z to find doc
+
+" Mini Vim-APP
+"Plug 'voldikss/vim-floaterm'
+"Plug 'liuchengxu/vim-clap'
+"Plug 'jceb/vim-orgmode'
+Plug 'mhinz/vim-startify'
+"Plug 'theniceboy/vim-leader-mapper'(nvim only)
+
+" Vim Applications
+"Plug 'itchyny/calendar.vim'
+
+" Other visual enhancement
+Plug 'ryanoasis/vim-devicons'
+Plug 'luochen1990/rainbow'
+
+" Other useful utilities
+Plug 'tpope/vim-eunuch' " do stuff like :SudoWrite
+Plug 'makerj/vim-pdf'
+
+" Dependencies
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'kana/vim-textobj-user'
+Plug 'roxma/nvim-yarp'
+Plug 'rbgrouleff/bclose.vim' " For ranger.vim
+
+call plug#end()
+
+" experimental
+"set lazyredraw
+"set regexpengine=1
+
+
 " ===
 " === Dress up my vim
 " ===
 set termguicolors	" enable true colors support
+set background=dark
+"let ayucolor="mirage"
+"let g:oceanic_next_terminal_bold = 1
+"let g:oceanic_next_terminal_italic = 1
+"let g:one_allow_italics = 1
 
-" use 256 colors when possible
-if has('gui_running') || using_neovim || (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256')
-    if !has('gui_running')
-        let &t_Co = 256
-    endif
-    set background=dark
-    colorscheme gruvbox
-else
-    set background=dark
-    colorscheme gruvbox
-endif
+syntax enable
+"color dracula
+"color one
+"color deus
+color gruvbox
+"let ayucolor="light"
+"color ayu
+"set background=light
+"color xcodedark
 
 hi NonText ctermfg=gray guifg=grey10
+"hi SpecialKey ctermfg=blue guifg=grey70
 
 
-" when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=3
 
-" clear empty spaces at the end of lines on save of python files
-autocmd BufWritePre *.py :%s/\s\+$//e
+" ===================== Start of Plugin Settings =====================
 
-" fix problems with uncommon shells (fish, xonsh) and plugins running commands
-" (neomake, ...)
-if has("unix") || has('mac')
-set shell=/bin/bash 
-endif
-" Ability to add python breakpoints
-" (I use ipdb, but you can change it to whatever tool you use for debugging)(TODO)
-"au FileType python map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
-
-" ============================================================================
-" Plugins settings and mappings
-" Edit them as you wish.
 
 " ===
 " === airline.vim
 " ===
 let g:airline_powerline_fonts = 1
+set laststatus=2  "永远显示状态栏 "
 
 " ==
 " == GitGutter(TODO)
@@ -743,6 +645,7 @@ nnoremap <LEADER>gf :GitGutterFold<CR>
 nnoremap H :GitGutterPreviewHunk<CR>
 nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
 nnoremap <LEADER>g= :GitGutterNextHunk<CR>
+
 
 " ===
 " === coc
@@ -902,6 +805,7 @@ let g:ctrlp_map = ''
 let g:ctrlp_cmd = 'CtrlP'
 
 
+
 " ===
 " === vim-bookmarks
 " ===
@@ -988,7 +892,7 @@ let g:slime_vimterminal_cmd = "ipython"
 " ===
 " === Taglist
 " ===
-map <silent> T :TagbarOpenAutoClose<CR>
+"map <silent> T :TagbarOpenAutoClose<CR>
 
 " ===
 " === Vista.vim
@@ -1003,7 +907,7 @@ let g:vista#renderer#icons = {
 \   "variable": "\uf71b",
 \  }
 function! NearestMethodOrFunction() abort
-"return get(b:, 'vista_nearest_method_or_function', '')
+	return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
@@ -1333,8 +1237,8 @@ noremap <f12> :VBGstepOut<CR>
 " ===
 " === Haskell-vim
 " ===
-"filetype plugin indent on
-"syntax on
+filetype plugin indent on
+syntax on
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -1343,15 +1247,12 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enabl
 
-" Custom configurations ----------------
+" ===================== End of Plugin Settings =====================
 
-syntax enable
-" Include user's custom nvim configurations
-if using_neovim
-    let custom_configs_path = "~/.config/nvim/custom.vim"
-else
-    let custom_configs_path = "~/.vim/custom.vim"
-endif
-if filereadable(expand(custom_configs_path))
-  execute "source " . custom_configs_path
-endif
+" ===
+" === Necessary Commands to Execute
+" ===
+exec "nohlsearch"
+
+
+

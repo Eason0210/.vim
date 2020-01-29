@@ -12,5 +12,5 @@ bundle/
 doc/
 spell/
 tmp/
-
-
+vimrc-debug
+dirs/
