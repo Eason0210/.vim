@@ -117,7 +117,7 @@ Python:
 #### 1.5 Other Useful Normal Mode Remapping
 | Shortcut        | Action                                 |
 |-----------------|----------------------------------------|
-| `er`             | **Compile/Run the current file**       |
+| `er`            | **Compile/Run the current file**       |
 | `Y`             | Copy selected text to system clipboard |
 | `z` `=`         | Show spell suggestions                 |
 | `SPACE` `s` `c` | Toggle spell suggestion a              |
@@ -140,7 +140,8 @@ Python:
 | `s` `s`         | Set the two splits to be horizontal                                         |
 | `s` `r` `v`     | Rotate splits and arrange splits vertically                                 |
 | `s` `r` `h`     | Rotate splits and arrange splits horizontally                               |
-| `SPACE` `f` `f` | Maximize to full screen(macvim only)                                         |
+| `SPACE` `f` `f` | Maximize to full screen(macvim only)                                        |
+| `Ctrl` `w` `w`  | Jump to other windows                                                       |
 
 #### 2.2 Moving the Cursor Between Different Windows
 | Shortcut      | Action                         |
@@ -226,23 +227,23 @@ See `:help table-mode.txt` for more.
 | `Ctrl` `t` | open function/class/variable finder |
 
 #### FZF - the fuzzy file finder
-| Shortcut   | Action           |
-|------------|------------------|
-| `Ctrl` `p` | **Active FZF**   |
-| `Ctrl` `f` | Active Ag        |
-| `Ctrl` `h` | Active MRU       |
-| `Ctrl` `t` | Active BTags     |
-| `Ctrl` `l` | LinesWithPreview |
-| `Ctrl` `w` | Buffers          |
-| `Ctrl` `k` | Move up 1 item   |
-| `Ctrl` `j` | Move down 1 item |
-| `;`        | History          |
+| Shortcut    | Action           |
+|-------------|------------------|
+| `Ctrl` `p`  | **Active FZF**   |
+| `Ctrl` `f`  | Active Ag        |
+| `Ctrl` `h`  | Active MRU       |
+| `Ctrl` `t`  | Active BTags     |
+| `Ctrl` `l`  | LinesWithPreview |
+| `Space` `w` | Buffers          |
+| `Ctrl` `k`  | Move up 1 item   |
+| `Ctrl` `j`  | Move down 1 item |
+| `;`         | History          |
 
 #### Undotree
-| Shortcut      | Action        |
-|---------------|---------------|
-| `Shift` + `L` | Open Undotree |
-| `Shift` + `K` | History go up |
+| Shortcut      | Action          |
+|---------------|-----------------|
+| `Shift` + `L` | Open Undotree   |
+| `Shift` + `K` | History go up   |
 | `Shift` + `J` | History go down |
 
 #### Ranger.vim - file browser

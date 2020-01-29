@@ -88,7 +88,7 @@ set backspace=2
 "let g:neoterm_autoscroll = 1
 "autocmd TermOpen term://* startinsert
 tnoremap <C-N> <C-\><C-N>
-tnoremap <C-O> <C-\><C-N><C-O>
+"tnoremap <C-O> <C-\><C-N><C-O>
 "let g:terminal_color_0  = '#000000'
 "let g:terminal_color_1  = '#FF5555'
 "let g:terminal_color_2  = '#50FA7B'
@@ -206,9 +206,9 @@ cnoremap <M-w> <S-Right>
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-tnoremap <LEADER>w <C-w>w
-tnoremap <LEADER>q exit<CR>
-noremap <LEADER>w <C-w>w
+"tnoremap <LEADER>w <C-w>w
+"tnoremap <C-q> exit<CR>
+"noremap <LEADER>w <C-w>w
 noremap <LEADER>k <C-w>k
 noremap <LEADER>j <C-w>j
 noremap <LEADER>h <C-w>h
@@ -742,7 +742,7 @@ noremap <C-f> :Ag<CR>
 noremap <C-h> :MRU<CR>
 noremap <C-t> :BTags<CR>
 noremap <C-l> :LinesWithPreview<CR>
-noremap <C-w> :Buffers<CR>
+noremap <LEADER>w :Buffers<CR>
 noremap ; :History:<CR>
 
 autocmd! FileType fzf
