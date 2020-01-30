@@ -10,8 +10,6 @@
 " vim-esearch
 " fmoralesc/worldslice
 " SidOfc/mkdx
-let fancy_symbols_enabled = 0
-
 
 set encoding=utf-8
 let using_neovim = has('nvim')
@@ -716,7 +714,9 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 " fix problems with uncommon shells (fish, xonsh) and plugins running commands
 " (neomake, ...)
 if has("unix") || has('mac')
-set shell=/bin/bash 
+"set shell=/bin/bash 
+set shell=/bin/zsh 
+"source ~/.zshrc
 endif
 " Ability to add python breakpoints
 " (I use ipdb, but you can change it to whatever tool you use for debugging)(TODO)
@@ -980,7 +980,7 @@ let g:bullets_enabled_file_types = [
 " ===
 let g:slime_target = "vimterminal"
 "let g:slime_vimterminal_config = {options}
-"let g:slime_python_ipython = 1
+let g:slime_python_ipython = 1
 let g:slime_haskell_ghci_add_let = 0
 let g:slime_vimterminal_cmd = "ipython"
 "let g:slime_vimterminal_config = {"term_finish": "close"}
@@ -1346,6 +1346,8 @@ let g:haskell_backpack = 1                " to enabl
 " Custom configurations ----------------
 filetype indent plugin on
 syntax enable
+exec "nohlsearch"
+
 " Include user's custom nvim configurations
 if using_neovim
     let custom_configs_path = "~/.config/nvim/custom.vim"
