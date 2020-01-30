@@ -106,7 +106,8 @@ Plug 'francoiscabrol/ranger.vim'
 
 " Terminal
 Plug 'jpalardy/vim-slime'
-
+"Plug 'jupyter-vim/jupyter-vim'
+"Plug 'wmvanvliet/jupyter-vim'
 " Taglist
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 Plug 'liuchengxu/vista.vim'
@@ -262,7 +263,6 @@ if using_vim
     " allow plugins by file type (required for plugins!)
     filetype plugin on
     filetype indent on
-
     " always show status bar
     set laststatus=2
 
@@ -1344,7 +1344,7 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enabl
 
 " Custom configurations ----------------
-
+filetype indent plugin on
 syntax enable
 " Include user's custom nvim configurations
 if using_neovim

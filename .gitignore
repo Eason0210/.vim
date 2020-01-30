@@ -14,3 +14,5 @@ spell/
 tmp/
 vimrc-debug
 dirs/
+.XTablineBookmarks
+.XTablineSessions
