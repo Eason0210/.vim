@@ -157,10 +157,9 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 "Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 
 " Python
+"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-"Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
-"Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim'
 
 " Markdown
@@ -383,7 +382,7 @@ noremap <LEADER>; q:i
 
 " Save & quit
 noremap Q :q<CR>
-noremap <C-q> :qa<CR>
+"noremap <C-q> :qa<CR>
 noremap S :w<CR>
 
 "cOpen the vimrc file anytime
@@ -714,8 +713,8 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 " fix problems with uncommon shells (fish, xonsh) and plugins running commands
 " (neomake, ...)
 if has("unix") || has('mac')
-"set shell=/bin/bash 
-set shell=/bin/zsh 
+"set shell=/bin/bash
+set shell=/bin/zsh
 "source ~/.zshrc
 endif
 " Ability to add python breakpoints
@@ -750,7 +749,7 @@ nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 " fix the most annoying bug that coc has
 nnoremap <LEADER>cf :CocConfig<CR>
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator']
+let g:coc_global_extensions = ['coc-python','coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator']
 "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -776,6 +775,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap exp :CocCommand explorer<CR>
+nmap <leader>py :CocCommand python.startREPL<CR>
 " coc-todolist
 noremap ta :CocCommand todolist.create<CR>
 noremap td :CocCommand todolist.upload<CR>
@@ -819,8 +819,57 @@ let g:mkdp_page_title = '「${name}」'
 " === Python-syntax
 " ===
 let g:python_highlight_all = 1
-" let g:python_slow_sync = 0
+""" let g:python_slow_sync = 0
 
+" ===
+" === Python-mode
+" ===
+
+""let g:pymode = 1
+"let g:pymode_python = 'python3'
+"let g:pymode_indent = 1
+""Currently folding is considered experimental.
+"let g:pymode_folding = 0
+"let g:pymode_motion = 1
+"let g:pymode_doc = 1
+"let g:pymode_doc_bind = 'K'
+"
+""let g:pymode_virtualenv = 1
+""let g:pymode_virtualenv_path = $VIRTUAL_ENV
+""Run code
+"let g:pymode_run = 1
+"let g:pymode_run_bind = '<leader>r'
+""Debug
+"let g:pymode_breakpoint = 1
+"let g:pymode_breakpoint_bind = '<leader>b'
+""Manually set breakpoint command (leave empty for automatic detection)
+"let g:pymode_breakpoint_cmd = ''
+"
+""Code checking
+"let g:pymode_lint = 1
+"let g:pymode_lint_on_write = 1
+""let g:pymode_lint_on_fly = 0
+"let g:pymode_lint_message = 1
+""Values may be chosen from: `pylint`, `pep8`, `mccabe`, `pep257`, `pyflakes`.
+"let g:pymode_lint_checkers = ['pylint', 'pep8']
+""let g:pymode_lint_ignore = ["E501", "W",]
+""let g:pymode_lint_select = ["E501", "W0011", "W430"]
+"let g:pymode_lint_cwindow = 1
+"let g:pymode_lint_signs = 1
+""Defind error signs
+"let g:pymode_lint_todo_symbol = 'WW'
+"let g:pymode_lint_comment_symbol = 'CC'
+"let g:pymode_lint_visual_symbol = 'RR'
+"let g:pymode_lint_error_symbol = 'EE'
+"let g:pymode_lint_info_symbol = 'II'
+"let g:pymode_lint_pyflakes_symbol = 'FF'
+""completion
+"let g:pymode_rope_completion = 1
+"let g:pymode_rope_completion_bind = '<C-Space>'
+""goto definition 
+"let g:pymode_rope_goto_definition_bind = '<C-c>g'
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_all = 1
 
 " ===
 " === vim-table-mode
@@ -982,7 +1031,7 @@ let g:slime_target = "vimterminal"
 "let g:slime_vimterminal_config = {options}
 let g:slime_python_ipython = 1
 let g:slime_haskell_ghci_add_let = 0
-let g:slime_vimterminal_cmd = "ipython"
+"let g:slime_vimterminal_cmd = "ipython"
 "let g:slime_vimterminal_config = {"term_finish": "close"}
 
 " ===
