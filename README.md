@@ -59,9 +59,12 @@ Please **DO NOT** just copy this config without really looking at it! Please, at
 ## After Installation, You Might Want To:
 #### First of all
 - [ ] Do `:version`
+- [ ] If using Windows OS, `mklink c:\home\.vimrc c:\home\.vim\vimrc`  
+     On Windows, vim will `use $HOME/.vim` as `runtimepath`  
 
 #### Config `Python`
 - [ ] Well, make sure you have python3 installed
+- [ ] Make sure you have ipython installed
 
 #### For Code AutoComplete - coc
 Python:
@@ -187,6 +190,23 @@ Use the arrow keys to resize the current window.
 | `gy`            | Go to type definition     |
 | `Space` `r` `n` | Rename a variable         |
 
+#### COC(coc-todolist)
+
+| Shortcut     | Action            |
+|--------------|-------------------|
+| `t` `a`      | Create todolist   |
+| `t` `d`      | Upload todolist   |
+| `t` `D`      | Download todolist |
+| `t` `c`      | Clear Notice      |
+| `t` `c`  `l` | Normal todolist   |
+
+#### COC(others)
+
+| Shortcut        | Action           |
+|-----------------|------------------|
+| `t` `s`         | coc-translator-p |
+| `Space` `p` `y` | Open Python REPL |
+
 #### Ultisnips
 | Shortcut   | Action                                           |
 |------------|--------------------------------------------------|
@@ -203,6 +223,19 @@ Use the arrow keys to resize the current window.
 | `l`               | Change root         |
 | `z` `h`           | Toggle hidden       |
 | `,` (in NERDTREE) | Toggle menu         |
+
+
+#### Nerdcommenter
+| Shortcut           | Action                     |
+|--------------------|----------------------------|
+| `<leader>c<space>` | Comment/Cancel comment     |
+| `<leader>cc        | // Comment                 |
+| `<leader>cA        | Comment at the end of line |
+| `<leader>c$        | /* Comment */              |
+| `<leader>cs        | /* Block Comment */        |
+| `<leader>cy        | Comment and Yank           |
+| `<leader>ca        | Switch // to /* Comment */ |
+| `<leader>cu        | Cancle Comment             |
 
 #### GitGutter
 | Shortcut        | Action                            |

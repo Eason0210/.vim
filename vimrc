@@ -785,7 +785,6 @@ noremap ta :CocCommand todolist.create<CR>
 noremap td :CocCommand todolist.upload<CR>
 noremap tD :CocCommand todolist.download<CR>
 noremap tc :CocCommand todolist.clearNotice<CR>
-noremap tc :CocCommand todolist.clearNotice<CR>
 noremap tcl :CocList --normal todolist<CR>
 " coc-translator
 nmap ts <Plug>(coc-translator-p)
@@ -1093,7 +1092,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 " ==
-" == NERDTree-git
+" == Nerdcommenter
 " ==
 " <leader>c<space> 注释/取消注释
 " <leader>cc // 注释
