@@ -325,6 +325,7 @@ set shiftwidth=2
 set autoindent
 set list
 set listchars=tab:\|\ ,trail:▫
+" when scrolling, keep cursor 4 lines away from screen border
 set scrolloff=4
 set ttimeoutlen=0
 set notimeout
@@ -711,10 +712,6 @@ endif
 
 hi NonText ctermfg=gray guifg=grey10
 
-
-" when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=3
-
 " clear empty spaces at the end of lines on save of python files
 autocmd BufWritePre *.py :%s/\s\+$//e
 
@@ -757,7 +754,7 @@ nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 " fix the most annoying bug that coc has
 nnoremap <LEADER>cf :CocConfig<CR>
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python','coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator']
+let g:coc_global_extensions = ['coc-python','coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-pyright', 'coc-sourcekit', 'coc-translator']
 "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -782,7 +779,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
-nmap exp :CocCommand explorer<CR>
 nmap <leader>py :CocCommand python.startREPL<CR>
 " coc-todolist
 noremap ta :CocCommand todolist.create<CR>
