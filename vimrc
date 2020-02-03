@@ -16,13 +16,6 @@ set encoding=utf-8
 let using_neovim = has('nvim')
 let using_vim = !using_neovim
 
-" Windows Compatible
-" On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-" across (heterogeneous) systems easier.
-if has('win32')
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-endif
-
 " ============================================================================
 " Vim-plug initialization
 " Avoid modifying this section, unless you are very sure of what you are doing
