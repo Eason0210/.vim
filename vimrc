@@ -631,7 +631,7 @@ if has("gui_running")
         "set guifont=Hack_Nerd_Font_Mono_Regular:12
         set gfw=楷体:h14
         "自动设当前编辑的文件所在目录为当前工作路径
-        exec 'cd ' . fnameescape('d:\Code')
+        exec 'cd ' . fnameescape('~\Code')
         set autochdir
     endif
 
