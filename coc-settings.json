@@ -95,8 +95,7 @@
 	"git.enableGlobalStatus": false,
 	"git.signOffset": 2,
 	"tslint.autoFixOnSave": true,
-	"python.autoComplete.addBrackets": true,
-	"python.jediEnabled": false,
+	"python.autoComplete.addBrackets": false,
 	"python.formatting.provider": "yapf",
 	"python.formatting.yapfArgs": [
         "--style",
