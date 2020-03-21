@@ -454,7 +454,8 @@ noremap B 5b
 " ===
 " === Insert Mode Cursor Movement
 " ===
-inoremap <C-a> <ESC>A
+inoremap <C-a> <ESC>I
+inoremap <C-e> <ESC>A
 
 
 " ===
