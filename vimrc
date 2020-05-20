@@ -304,7 +304,7 @@ endif
 " ===
 " show line numbers
 set number
-set relativenumber
+"set relativenumber
 set cursorline
 
 " tabs and spaces handling
@@ -608,9 +608,9 @@ endfunc
 
 if has("gui_running")
     " 设定中英文输入法自动切换
-    "  autocmd! InsertEnter * set noimdisable
-    "  autocmd! InsertLeave * set imdisable
-    "  set noimdisable
+    "autocmd! InsertEnter * set noimdisable
+    "autocmd! InsertLeave * set imdisable
+    "set noimdisable
 
     if has("win32")
         " Windows兼容配置
